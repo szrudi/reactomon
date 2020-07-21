@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Pokemon extends Component {
+class PokemonCard extends Component {
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ class Pokemon extends Component {
     }
 }
 
-export default Pokemon;
+export default PokemonCard;
