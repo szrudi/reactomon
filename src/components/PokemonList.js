@@ -20,9 +20,8 @@ class PokemonList extends Component {
         return (
             <div>
                 <h1>List of pokemon</h1>
-                {this.state.pokemonList.map(pokemon => {
-                    return (<PokemonCard pokemon={pokemon} key={pokemon.name}/>)
-                })}
+                {this.state.pokemonList.map(pokemon =>
+                    <PokemonCard pokemon={pokemon} key={pokemon.name}/>)}
             </div>
         );
     }

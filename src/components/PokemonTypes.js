@@ -20,9 +20,8 @@ class PokemonTypes extends Component {
         return (
             <div>
                 <h1>List of types</h1>
-                {this.state.pokemonTypes.map(type => {
-                    return (<PokemonType type={type} key={type.name}/>)
-                })}
+                {this.state.pokemonTypes.map(type =>
+                    <PokemonType type={type} key={type.name}/>)}
             </div>
         );
     }
