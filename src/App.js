@@ -11,10 +11,10 @@ function App() {
             <div className="App">
                 <NavBar/>
                 <Switch>
-                    <Route path="/pokemon-list">
+                    <Route path="/pokemons">
                         <PokemonList/>
                     </Route>
-                    <Route path="/pokemon-types">
+                    <Route path="/types">
                         <PokemonTypes/>
                     </Route>
                 </Switch>

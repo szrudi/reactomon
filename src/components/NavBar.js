@@ -5,8 +5,8 @@ class NavBar extends Component {
     render() {
         return (
             <div>
-                <Link to="/pokemon-list">Pokemon list</Link>{' | '}
-                <Link to="/pokemon-types">Pokemon Types</Link>
+                <Link to="/pokemons">Pokemon list</Link>{' | '}
+                <Link to="/types">Pokemon Types</Link>
             </div>
         );
     }
