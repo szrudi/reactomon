@@ -11,7 +11,11 @@ class PokemonList extends Component {
         axios.get('https://pokeapi.co/api/v2/pokemon')
             .then(result => {
                 this.setState({
-                    pokemonList: result.data.results
+                    pokemonList: result.data.results.map(p => {
+                            p.id = p.url.match(/\/(\d+)\/$/)[1];
+                            return p;
+                        }
+                    )
                 });
             });
     }
@@ -21,7 +25,7 @@ class PokemonList extends Component {
             <div>
                 <h1>List of pokemon</h1>
                 {this.state.pokemonList.map(pokemon =>
-                    <PokemonCard pokemon={pokemon} key={pokemon.name}/>)}
+                    <PokemonCard pokemon={pokemon} key={pokemon.id}/>)}
             </div>
         );
     }
