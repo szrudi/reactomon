@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
-import PokemonList from "./PokemonList"
+import PokemonList from "./PokemonList";
 
 const PokemonDetails = props => {
     const [pokemon, setPokemon] = useState({});
@@ -8,9 +7,10 @@ const PokemonDetails = props => {
     useEffect(
         () => {
             const {id} = props.match.params;
-            axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+                .then(response => response.json())
                 .then(result => {
-                    setPokemon(result.data);
+                    setPokemon(result);
                 });
         }, [props.match.params]
     );

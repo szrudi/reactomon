@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import PokemonCard from "./PokemonCard";
-import axios from "axios";
 
 const PokemonList = props => {
     const [pokemonList, setPokemonList] = useState([]);
 
     useEffect(
         () => {
-            axios.get('https://pokeapi.co/api/v2/pokemon')
+            fetch('https://pokeapi.co/api/v2/pokemon')
+                .then(response => response.json())
                 .then(result => {
-                    setPokemonList(result.data.results.map(
+                    setPokemonList(result.results.map(
                         p => ({...p, id: p.url.match(/\/(\d+)\/$/)[1]})
                     ));
                 });

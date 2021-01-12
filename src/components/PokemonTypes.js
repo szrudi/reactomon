@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
 import PokemonType from "./PokemonType";
 
 const PokemonTypes = props => {
     const [pokemonTypes, setPokemonTypes] = useState([]);
 
     useEffect(() => {
-        axios.get('https://pokeapi.co/api/v2/type')
+        fetch('https://pokeapi.co/api/v2/type')
+            .then(response => response.json())
             .then(result => {
-                setPokemonTypes(result.data.results);
+                setPokemonTypes(result.results);
             });
         }, []);
 
