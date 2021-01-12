@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class PokemonType extends Component {
-    render() {
-        return (
-            <div>{this.props.type.name}</div>
-        );
-    }
+const PokemonType = props => {
+    return (
+        <div>{props.type.name}</div>
+    );
 }
 
 export default PokemonType;
