@@ -1,26 +1,22 @@
-import React, {useState, useEffect} from 'react';
 import PokemonCard from "./PokemonCard";
+import {useHttp} from "../hooks/useHttp";
 
 const PokemonList = props => {
-    const [pokemonList, setPokemonList] = useState([]);
+    const [data, isLoading] = useHttp('https://pokeapi.co/api/v2/pokemon');
 
-    useEffect(
-        () => {
-            fetch('https://pokeapi.co/api/v2/pokemon')
-                .then(response => response.json())
-                .then(result => {
-                    setPokemonList(result.results.map(
-                        p => ({...p, id: p.url.match(/\/(\d+)\/$/)[1]})
-                    ));
-                });
-        }, []
-    );
+    let content = <p>Loading list...</p>;
+
+    if (data && !isLoading) {
+        let pokemonList = data.results.map(p => ({...p, id: p.url.match(/\/(\d+)\/$/)[1]}));
+        content = pokemonList.map(
+            pokemon => <PokemonCard pokemon={pokemon} key={pokemon.id}/>
+        );
+    }
 
     return (
         <div>
             <h1>List of pokemon</h1>
-            {pokemonList.map(pokemon =>
-                <PokemonCard pokemon={pokemon} key={pokemon.id}/>)}
+            {content}
         </div>
     );
 }

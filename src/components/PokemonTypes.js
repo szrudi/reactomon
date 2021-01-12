@@ -1,16 +1,9 @@
-import React, {useState, useEffect} from 'react';
 import PokemonType from "./PokemonType";
+import {useHttp} from "../hooks/useHttp";
 
 const PokemonTypes = props => {
-    const [pokemonTypes, setPokemonTypes] = useState([]);
-
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/type')
-            .then(response => response.json())
-            .then(result => {
-                setPokemonTypes(result.results);
-            });
-        }, []);
+    const [data] = useHttp('https://pokeapi.co/api/v2/type');
+    let pokemonTypes = data ? data.results : [];
 
     return (
         <div>

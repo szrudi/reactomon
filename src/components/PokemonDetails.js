@@ -1,19 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import PokemonList from "./PokemonList";
+import {useHttp} from "../hooks/useHttp";
 
 const PokemonDetails = props => {
-    const [pokemon, setPokemon] = useState({});
 
-    useEffect(
-        () => {
-            const {id} = props.match.params;
-            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-                .then(response => response.json())
-                .then(result => {
-                    setPokemon(result);
-                });
-        }, [props.match.params]
-    );
+    const {id} = props.match.params;
+    const [data] = useHttp(`https://pokeapi.co/api/v2/pokemon/${id}`, [props.match.params]);
+    const pokemon = data ? data : {};
 
     return (
         <div>
