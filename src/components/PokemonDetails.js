@@ -1,28 +1,27 @@
-import React, {Component} from 'react';
-import {useParams} from "react-router-dom";
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import PokemonList from "./PokemonList"
 
+const PokemonDetails = props => {
+    const [pokemon, setPokemon] = useState({});
 
-class PokemonDetails extends Component {
-    state = {
-        pokemon: {}
-    }
-
-    componentDidMount() {
-        const {id} = this.props.match.params;
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            .then(result => {
-                this.setState({
-                    pokemon: result.data
+    useEffect(
+        () => {
+            const {id} = props.match.params;
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+                .then(result => {
+                    setPokemon(result.data);
                 });
-            });
-    }
+        }, [props.match.params]
+    );
 
-    render() {
-        return (
-            <div>{this.state.pokemon.name}</div>
-        );
-    }
+    return (
+        <div>
+            {pokemon.name}
+            <hr/>
+            <PokemonList/>
+        </div>
+    );
 }
 
 export default PokemonDetails;
