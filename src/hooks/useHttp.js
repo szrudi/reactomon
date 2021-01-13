@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-export const useHttp = (url, dependencies = []) => {
+export const useHttp = (url) => {
     const [isLoading, setLoading] = useState(false);
     const [fetchedData, setData] = useState(null);
 
@@ -14,7 +14,7 @@ export const useHttp = (url, dependencies = []) => {
                 setData(data);
                 setLoading(false);
             });
-    }, dependencies);
+    }, [url]);
 
     return [fetchedData, isLoading];
 }
