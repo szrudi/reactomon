@@ -1,4 +1,4 @@
-import PokemonCard from "./PokemonCard";
+import PokemonSmallCard from "./PokemonSmallCard";
 import {useHttp} from "../hooks/useHttp";
 import PokemonDetails from "./PokemonDetails";
 import {useParams} from "react-router-dom";
@@ -10,7 +10,7 @@ const PokemonList = props => {
     if (pokemonList) {
         pokemonList = pokemonList.results.map(p => ({...p, id: p.url.match(/\/(\d+)\/$/)[1]}));
         cards = pokemonList.map(pokemon =>
-            <PokemonCard pokemon={pokemon} key={pokemon.id}/>
+            <PokemonSmallCard pokemon={pokemon} key={pokemon.id}/>
         );
     }
 

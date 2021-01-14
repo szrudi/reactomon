@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Card} from "../elements/Card";
 
-const PokemonCard = props => {
+const PokemonSmallCard = props => {
     return (
         <Card small centered>
             <Link to={`/pokemon/${props.pokemon.id}`}>
@@ -12,4 +12,4 @@ const PokemonCard = props => {
     );
 }
 
-export default PokemonCard;
+export default PokemonSmallCard;

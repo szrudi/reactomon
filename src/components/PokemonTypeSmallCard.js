@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card} from "../elements/Card";
 
-const PokemonType = props => {
+const PokemonTypeSmallCard = props => {
     return (
         <Card small centered>
             <div>{props.type.name}</div>
@@ -9,4 +9,4 @@ const PokemonType = props => {
     );
 }
 
-export default PokemonType;
+export default PokemonTypeSmallCard;

@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PokemonList from "./components/PokemonList";
-import PokemonTypes from "./components/PokemonTypes";
+import PokemonTypeList from "./components/PokemonTypeList";
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
                         <PokemonList/>
                     </Route>
                     <Route path="/types">
-                        <PokemonTypes/>
+                        <PokemonTypeList/>
                     </Route>
                 </Switch>
             </div>

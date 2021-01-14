@@ -1,8 +1,8 @@
-import PokemonType from "./PokemonType";
+import PokemonTypeSmallCard from "./PokemonTypeSmallCard";
 import {useHttp} from "../hooks/useHttp";
 import {CardsContainer} from "../elements/CardsContainer";
 
-const PokemonTypes = props => {
+const PokemonTypeList = props => {
     const [data] = useHttp('https://pokeapi.co/api/v2/type');
 
     return <>
@@ -10,7 +10,7 @@ const PokemonTypes = props => {
         <div className="content">
             <CardsContainer>
                 {data ?
-                    data.results.map(type => <PokemonType type={type} key={type.name}/>)
+                    data.results.map(type => <PokemonTypeSmallCard type={type} key={type.name}/>)
                     : <p>Loading list...</p>
                 }
             </CardsContainer>
@@ -18,4 +18,4 @@ const PokemonTypes = props => {
     </>;
 }
 
-export default PokemonTypes;
+export default PokemonTypeList;
