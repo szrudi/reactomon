@@ -11,8 +11,8 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <NavBar/>
-                <Switch>
-                    <Route path="/pokemons">
+                <Switch >
+                    <Route exact path={["/pokemon/:id", "/pokemon", "/"]}>
                         <PokemonList/>
                     </Route>
                     <Route path="/types">
