@@ -1,5 +1,6 @@
 import PokemonCard from "./PokemonCard";
 import {useHttp} from "../hooks/useHttp";
+import PokemonDetails from "./PokemonDetails";
 import {useParams} from "react-router-dom";
 import {CardsContainer} from "../elements/CardsContainer";
 
@@ -13,12 +14,14 @@ const PokemonList = props => {
         );
     }
 
+    const {id} = useParams();
     return <>
         <h1>Pokemon list</h1>
         <div className="content">
             <CardsContainer>
                 {cards ? cards : <p>Loading list...</p>}
             </CardsContainer>
+            {id && <PokemonDetails id={id}/>}
         </div>
     </>;
 }

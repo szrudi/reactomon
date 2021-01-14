@@ -4,7 +4,6 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PokemonList from "./components/PokemonList";
 import PokemonTypes from "./components/PokemonTypes";
-import PokemonDetails from "./components/PokemonDetails"
 
 function App() {
     return (
@@ -18,7 +17,6 @@ function App() {
                     <Route path="/types">
                         <PokemonTypes/>
                     </Route>
-                    <Route path="/pokemon/:id" component={PokemonDetails}/>
                 </Switch>
             </div>
         </BrowserRouter>
