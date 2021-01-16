@@ -1,5 +1,8 @@
+const pokemonListTitle = "Pokemon list";
+
 export const routes = {
-    pokemonList: {path: "/pokemon", title: "Pokemon list"},
+    root: {path: "/", title: pokemonListTitle},
+    pokemonList: {path: "/pokemon", title: pokemonListTitle},
     pokemon: {path: "/pokemon/:id", title: "Pokemon Details"},
     types: {path: "/types", title: "Types of pokemon"},
 };
