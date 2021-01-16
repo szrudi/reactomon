@@ -8,9 +8,8 @@ const MainLayout = (props) => (
     <div className="App">
         <Title className={"title"}>
             <Switch>
-                <Route path={routes.pokemon}>Pokemon Details</Route>
-                <Route path={routes.pokemonList}>Pokemon list</Route>
-                <Route path={routes.types}>Types of pokemon</Route>
+                {[...Object.values(routes)].map((route) =>
+                    <Route exact path={route.path}>{route.title}</Route>)}
             </Switch>
         </Title>
         <NavBar/>

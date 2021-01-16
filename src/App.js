@@ -12,13 +12,13 @@ function App() {
         <BrowserRouter>
             <MainLayout>
                 <Switch>
-                    <Route exact path={[routes.pokemon, routes.pokemonList, "/"]}>
-                        <Route path={routes.pokemon}
+                    <Route exact path={[routes.pokemon.path, routes.pokemonList.path, "/"]}>
+                        <Route path={routes.pokemon.path}
                                render={(routeProps) => (
                                    <PokemonDetails id={routeProps.match.params.id}/>)}/>
                         <PokemonList/>
                     </Route>
-                    <Route path={routes.types}
+                    <Route path={routes.types.path}
                            component={PokemonTypeList}/>
                 </Switch>
             </MainLayout>

@@ -5,8 +5,8 @@ import {routes} from "../helpers/Globals";
 const NavBar = props => {
     return (
         <div className="menu">
-            <NavLink to={routes.pokemonList}>Pokemon list</NavLink>{' | '}
-            <NavLink to={routes.types}>Pokemon Types</NavLink>
+            <NavLink to={routes.pokemonList.path}>Pokemon list</NavLink>{' | '}
+            <NavLink to={routes.types.path}>Pokemon Types</NavLink>
         </div>
     );
 }
