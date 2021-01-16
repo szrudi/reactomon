@@ -6,10 +6,12 @@ export const Card = styled.div`
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 200px;
+  min-height: 280px;
   text-align: left;
 
   ${props => props.small && css`
     height: 60px;
+    min-height: auto;
     width: 110px;
     transition: 0.1s;
 
