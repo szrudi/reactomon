@@ -1,11 +1,12 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {routes} from "../helpers/Globals";
 
 const NavBar = props => {
     return (
         <div className="menu">
-            <Link to="/pokemon">Pokemon list</Link>{' | '}
-            <Link to="/types">Pokemon Types</Link>
+            <NavLink to={routes.pokemonList}>Pokemon list</NavLink>{' | '}
+            <NavLink to={routes.types}>Pokemon Types</NavLink>
         </div>
     );
 }
