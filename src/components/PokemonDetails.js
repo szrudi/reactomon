@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import {useHttp} from "../hooks/useHttp";
-import {Card} from "../elements/Card";
 import {pokemonApi} from "../helpers/Globals";
+import {CardDetailed} from "../elements/CardDetailed";
 
 const PokemonThumbnail = styled.img`
   height: 100px;
@@ -35,9 +35,7 @@ const PokemonDetails = props => {
     }
 
     return (
-        <Card className="details">
-            {content}
-        </Card>
+        <CardDetailed>{content}</CardDetailed>
     );
 }
 

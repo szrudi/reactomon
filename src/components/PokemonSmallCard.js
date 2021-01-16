@@ -4,11 +4,13 @@ import {Card} from "../elements/Card";
 
 const PokemonSmallCard = props => {
     return (
-        <Card small centered>
-            <Link to={`/pokemon/${props.pokemon.id}`}>
-                <div>{props.pokemon.name}</div>
-            </Link>
-        </Card>
+        <Link to={`/pokemon/${props.pokemon.id}`}>
+            <Card small centered>
+                <span style={{textTransform: "capitalize"}}>
+                    {props.pokemon.name}
+                </span>
+            </Card>
+        </Link>
     );
 }
 
