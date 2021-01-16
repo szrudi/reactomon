@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from "styled-components";
 import {useHttp} from "../hooks/useHttp";
 import {Card} from "../elements/Card";
-import styled from "styled-components";
+import {pokemonApi} from "../helpers/Globals";
 
 const PokemonThumbnail = styled.img`
   height: 100px;
@@ -10,7 +11,7 @@ const PokemonThumbnail = styled.img`
 `;
 
 const PokemonDetails = props => {
-    const [pokemon] = useHttp(`https://pokeapi.co/api/v2/pokemon/${props.id}`);
+    const [pokemon] = useHttp(`${pokemonApi}/pokemon/${props.id}`);
 
     let content = <div>Loading...</div>;
     if (pokemon) {
@@ -18,7 +19,7 @@ const PokemonDetails = props => {
             <div>
                 <PokemonThumbnail
                     src={pokemon.sprites.other.dream_world.front_default}
-                    alt={pokemon.name + " front sprite"} />
+                    alt={pokemon.name + " front sprite"}/>
             </div>
             <h3>{pokemon.name}</h3>
             <ul>
