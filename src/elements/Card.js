@@ -16,8 +16,8 @@ export const Card = styled.div
     height: 60px;
     min-height: auto;
     width: 20%;
-    min-width: 100px;
-    max-width: 150px;
+    min-width: 120px;
+    max-width: 220px;
     transition: 0.1s;
 
     &:hover {

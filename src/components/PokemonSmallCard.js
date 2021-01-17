@@ -8,14 +8,14 @@ const PokemonSmallCard = ({pokemon}) => {
     const {isCaught} = useParams();
     const url = generatePath(routes.pokemon.path, {id: pokemon.id, isCaught});
     return (
-        <Link to={url}>
-            <Card small centered>
+        <Card small centered>
+            <Link to={url}>
                 <span style={{textTransform: "capitalize"}}>
                     {pokemon.name}
                 </span>
-                <CatchPokemon pokemon={pokemon}/>
-            </Card>
-        </Link>
+            </Link>
+            <CatchPokemon pokemon={pokemon}/>
+        </Card>
     );
 }
 
