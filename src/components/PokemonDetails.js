@@ -12,7 +12,6 @@ const PokemonThumbnail = styled.img`
 
 const PokemonDetails = props => {
     const [pokemon] = useHttp(`${pokemonApi}/pokemon/${props.id}`);
-
     let content = <div>Loading...</div>;
     if (pokemon) {
         content = <>

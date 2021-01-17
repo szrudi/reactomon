@@ -6,21 +6,35 @@ import PokemonTypeList from "./components/PokemonTypeList";
 import MainLayout from "./layouts/MainLayout";
 import {routes} from "./helpers/Globals";
 import PokemonDetails from "./components/PokemonDetails";
+import PokemonContextElement from "./contexts/PokemonContextElement";
 
 function App() {
     return (
         <BrowserRouter>
             <MainLayout>
-                <Switch>
-                    <Route exact path={[routes.pokemon.path, routes.pokemonList.path, routes.root.path]}>
-                        <Route path={routes.pokemon.path}
-                            render={(routeProps) => (
-                                   <PokemonDetails id={routeProps.match.params.id}/>)}/>
-                        <PokemonList/>
-                    </Route>
-                    <Route path={routes.types.path}
-                           component={PokemonTypeList}/>
-                </Switch>
+                <PokemonContextElement>
+                    <Switch>
+                        <Route exact path={[
+                            routes.root.path,
+                            routes.pokemonList.path, routes.pokemon.path,
+                            routes.pokemonCaughtList.path, routes.pokemonCaught.path
+                        ]}>
+                            <Route path={[routes.pokemon.path, routes.pokemonCaught.path]}
+                                   render={(routeProps) => (
+                                       <PokemonDetails id={routeProps.match.params.id}/>)}/>
+                            <Switch>
+                                <Route path={[routes.pokemonList.path, routes.root.path]}>
+                                    <PokemonList/>
+                                </Route>
+                                <Route path={routes.pokemonCaughtList.path}>
+                                    <PokemonList caughtOnly={true}/>
+                                </Route>
+                            </Switch>
+                        </Route>
+                        <Route path={routes.types.path}
+                               component={PokemonTypeList}/>
+                    </Switch>
+                </PokemonContextElement>
             </MainLayout>
         </BrowserRouter>
     );

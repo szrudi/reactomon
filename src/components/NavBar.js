@@ -27,8 +27,9 @@ const menuStyle = {marginBottom: 15, position: 'relative', verticalAlign: 'top'}
 const NavBar = props => {
     return (
         <div className="menu" style={menuStyle}>
-            <StyledNavLink to={routes.pokemonList.path}>Pokemon list</StyledNavLink>
-            <StyledNavLink to={routes.types.path}>Pokemon Types</StyledNavLink>
+            <StyledNavLink to={routes.pokemonList.path}>{routes.pokemonList.title}</StyledNavLink>
+            <StyledNavLink to={routes.types.path}>{routes.types.title}</StyledNavLink>
+            <StyledNavLink to={routes.pokemonCaughtList.path}>{routes.pokemonCaughtList.title}</StyledNavLink>
         </div>
     );
 };

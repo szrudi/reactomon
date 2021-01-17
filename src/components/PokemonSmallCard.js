@@ -1,10 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {generatePath, Link, useLocation} from 'react-router-dom';
 import {Card} from "../elements/Card";
+import {routes} from "../helpers/Globals";
 
 const PokemonSmallCard = props => {
+    let {pathname} = useLocation();
+    let pokemonPath =
+        pathname === routes.pokemonCaughtList.path
+            ? routes.pokemonCaught.path : routes.pokemon.path;
+
     return (
-        <Link to={`/pokemon/${props.pokemon.id}`}>
+        <Link to={generatePath(pokemonPath, {id: props.pokemon.id})}>
             <Card small centered>
                 <span style={{textTransform: "capitalize"}}>
                     {props.pokemon.name}
