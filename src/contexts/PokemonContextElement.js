@@ -2,27 +2,26 @@ import React, {createContext, useEffect, useState} from "react";
 import {useHttp} from "../hooks/useHttp";
 import {pokemonApi} from "../helpers/Globals";
 
-export const PokemonContext = createContext([]);
+export const PokemonContext = createContext([[], _ => _, false]);
 
 const PokemonContextElement = (props) => {
-    const [response] = useHttp(pokemonApi + '/pokemon');
+    const [response, isLoading] = useHttp(pokemonApi + '/pokemon');
     const [pokemonList, setPokemonList] = useState([]);
     useEffect(() => {
         if (response) {
             setPokemonList(response.results.map(p => ({
                 ...p,
-                id: p.url.match(/\/(\d+)\/$/)[1],
-                caught: Math.round(Math.random() * 10) % 4 === 0,
+                id: parseInt(p.url.match(/\/(\d+)\/$/)[1]),
+                caught: false,
             })));
         }
-    }, [response]);
+    }, [response, setPokemonList]);
 
     return (
-        <PokemonContext.Provider value={pokemonList}>
+        <PokemonContext.Provider value={[pokemonList, setPokemonList, isLoading]}>
             {props.children}
         </PokemonContext.Provider>
     );
 }
 
 export default PokemonContextElement;
-

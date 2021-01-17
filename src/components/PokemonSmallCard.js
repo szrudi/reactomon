@@ -2,16 +2,18 @@ import React from 'react';
 import {generatePath, Link, useParams} from 'react-router-dom';
 import {Card} from "../elements/Card";
 import {routes} from "../helpers/Globals";
+import CatchPokemon from "./CatchPokemon";
 
-const PokemonSmallCard = props => {
+const PokemonSmallCard = ({pokemon}) => {
     const {isCaught} = useParams();
-    const path = isCaught ? routes.pokemonCaught.path : routes.pokemon.path;
+    const url = generatePath(routes.pokemon.path, {id: pokemon.id, isCaught});
     return (
-        <Link to={generatePath(path, {id: props.pokemon.id, isCaught})}>
+        <Link to={url}>
             <Card small centered>
                 <span style={{textTransform: "capitalize"}}>
-                    {props.pokemon.name}
+                    {pokemon.name}
                 </span>
+                <CatchPokemon pokemon={pokemon}/>
             </Card>
         </Link>
     );

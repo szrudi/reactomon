@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
 import {useHttp} from "../hooks/useHttp";
 import {pokemonApi} from "../helpers/Globals";
 import {CardDetailed} from "../elements/CardDetailed";
+import CatchPokemon from "./CatchPokemon";
+import {PokemonContext} from "../contexts/PokemonContextElement";
 
 const PokemonThumbnail = styled.img`
   height: 100px;
@@ -11,9 +13,14 @@ const PokemonThumbnail = styled.img`
 `;
 
 const PokemonDetails = props => {
-    const [pokemon] = useHttp(`${pokemonApi}/pokemon/${props.id}`);
+    let [pokemon] = useHttp(`${pokemonApi}/pokemon/${props.id}`);
+    const [pokemonList] = useContext(PokemonContext);
     let content = <div>Loading...</div>;
     if (pokemon) {
+        // TODO integrate this data to PokemonContext?
+        const {caught} = pokemonList.find(p => p.id === parseInt(pokemon.id));
+        pokemon.caught = caught;
+
         content = <>
             <div>
                 <PokemonThumbnail
@@ -30,6 +37,7 @@ const PokemonDetails = props => {
                     .reduce((prev, curr) => [prev, ', ', curr])}
                 </li>
             </ul>
+            <CatchPokemon pokemon={pokemon}/>
         </>
     }
 
