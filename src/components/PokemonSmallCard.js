@@ -1,12 +1,12 @@
 import React from 'react';
-import {generatePath, Link, useLocation} from 'react-router-dom';
+import {generatePath, Link, useRouteMatch} from 'react-router-dom';
 import {Card} from "../elements/Card";
 import {routes} from "../helpers/Globals";
 
 const PokemonSmallCard = props => {
-    let {pathname} = useLocation();
+    let {path} = useRouteMatch();
     let pokemonPath =
-        pathname === routes.pokemonCaughtList.path
+        path === routes.pokemonCaughtList.path
             ? routes.pokemonCaught.path : routes.pokemon.path;
 
     return (

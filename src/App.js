@@ -22,14 +22,11 @@ function App() {
                             <Route path={[routes.pokemon.path, routes.pokemonCaught.path]}
                                    render={(routeProps) => (
                                        <PokemonDetails id={routeProps.match.params.id}/>)}/>
-                            <Switch>
-                                <Route path={[routes.pokemonList.path, routes.root.path]}>
-                                    <PokemonList/>
-                                </Route>
-                                <Route path={routes.pokemonCaughtList.path}>
-                                    <PokemonList caughtOnly={true}/>
-                                </Route>
-                            </Switch>
+                            <Route
+                                path={[routes.root.path, routes.pokemonList.path, routes.pokemonCaughtList.path]}
+                                render={(routeProps) => (
+                                    <PokemonList
+                                        caughtOnly={routeProps.match.path === routes.pokemonCaughtList.path}/>)}/>
                         </Route>
                         <Route path={routes.types.path}
                                component={PokemonTypeList}/>
