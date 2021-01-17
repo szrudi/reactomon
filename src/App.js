@@ -15,23 +15,25 @@ function App() {
                 <Redirect to={generatePath(routes.pokemonList.path)}/>
             </Route>
             <MainLayout>
-                <Switch>
-                    <Route path={routes.types.path}
-                           component={PokemonTypeList}/>
-                    <Route exact path={[
-                        routes.pokemonList.path, routes.pokemon.path,
-                        routes.pokemonCaughtList.path]}
-                           render={
-                               (routeProps) => {
-                                   const isCaught = routeProps.match.params.isCaught === 'caught';
-                                   const showDetails = routes.pokemon.path === routeProps.match.path;
-                                   return (
-                                       <PokemonContextElement>
+                <PokemonContextElement>
+                    <Switch>
+                        <Route path={routes.types.path}
+                               component={PokemonTypeList}/>
+                        <Route exact path={[
+                            routes.pokemonList.path, routes.pokemon.path,
+                            routes.pokemonCaughtList.path]}
+                               render={
+                                   (routeProps) => {
+                                       const isCaught = routeProps.match.params.isCaught === 'caught';
+                                       const showDetails = routes.pokemon.path === routeProps.match.path;
+                                       return (<>
                                            {showDetails && <PokemonDetails id={routeProps.match.params.id}/>}
                                            <PokemonList caughtOnly={isCaught}/>
-                                       </PokemonContextElement>);
-                               }}/>
-                </Switch>
+                                       </>);
+                                   }
+                               }/>
+                    </Switch>
+                </PokemonContextElement>
             </MainLayout>
         </BrowserRouter>
     );
