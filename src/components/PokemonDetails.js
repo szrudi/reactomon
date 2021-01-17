@@ -18,8 +18,8 @@ const PokemonDetails = props => {
     let content = <div>Loading...</div>;
     if (pokemon) {
         // TODO integrate this data to PokemonContext?
-        const {caught} = pokemonList.find(p => p.id === parseInt(pokemon.id));
-        pokemon.caught = caught;
+        const pokemonInList = pokemonList.find(p => p.id === parseInt(pokemon.id));
+        pokemon.caught = pokemonInList ? pokemonInList.caught : false;
 
         content = <>
             <div>
