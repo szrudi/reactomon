@@ -28,7 +28,9 @@ const CatchPokemon = ({pokemon}) => {
         e.preventDefault();
         pokemonList = pokemonList.map(p => {
             if (p.id === pokemon.id) {
-                p.caught = true;
+                // FIXME is this okay like this?
+                // https://reactjs.org/docs/hooks-reference.html#functional-updates
+                p.caught = !p.caught;
             }
             return p;
         });
