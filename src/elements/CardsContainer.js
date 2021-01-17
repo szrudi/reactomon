@@ -6,9 +6,5 @@ export const CardsContainer = styled.div
   display: flex;
   flex-wrap: wrap;
   flex-grow: 5;
-  justify-content: space-evenly;
-  &::after {
-    content: "";
-    flex: 1 0 150px;
-  }
+  justify-content: flex-start;
 `;
