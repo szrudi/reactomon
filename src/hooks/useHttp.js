@@ -23,6 +23,7 @@ export const useHttp = (url) => {
                 console.log(reason);
                 setLoading(false);
             });
+
         return () => {
             setData(null);
         }

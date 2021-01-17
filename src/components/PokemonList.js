@@ -1,19 +1,22 @@
+import React, {useContext} from 'react';
+import PropTypes from "prop-types";
 import PokemonSmallCard from "./PokemonSmallCard";
 import {CardsContainer} from "../elements/CardsContainer";
 import {PokemonContext} from "../contexts/PokemonContextElement";
-import {useContext} from "react";
-import PropTypes from "prop-types";
 
 const PokemonList = props => {
-    let cards = null;
-    let pokemonList = useContext(PokemonContext);
+    let [pokemonList, , isLoading] = useContext(PokemonContext);
+    let placeHolder = <p>{isLoading ? "Loading list..." : "No Pokemon found."}</p>;
+
     if (props.caughtOnly) {
         pokemonList = pokemonList.filter(p => p.caught);
     }
-    cards = pokemonList.map(pokemon => <PokemonSmallCard pokemon={pokemon} key={pokemon.id}/>);
+
+    const cards = pokemonList.map(pokemon =>
+        <PokemonSmallCard pokemon={pokemon} key={pokemon.id}/>);
     return (<>
         <CardsContainer>
-            {cards.length > 0 ? cards : <p>Loading list...</p>}
+            {cards.length > 0 ? cards : placeHolder}
         </CardsContainer>
     </>);
 

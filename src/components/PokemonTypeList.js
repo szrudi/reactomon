@@ -4,12 +4,13 @@ import {CardsContainer} from "../elements/CardsContainer";
 import {pokemonApi} from "../helpers/Globals";
 
 const PokemonTypeList = props => {
-    const [data] = useHttp(pokemonApi + '/type');
+    const [data, isLoading] = useHttp(pokemonApi + '/type');
+    let placeHolder = <p>{isLoading ? "Loading list..." : "No type found."}</p>;
     return (
         <CardsContainer>
             {data ?
                 data.results.map(type => <PokemonTypeSmallCard type={type} key={type.name}/>)
-                : <p>Loading list...</p>
+                : placeHolder
             }
         </CardsContainer>
     );

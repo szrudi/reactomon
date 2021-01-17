@@ -20,12 +20,11 @@ function App() {
                            component={PokemonTypeList}/>
                     <Route exact path={[
                         routes.pokemonList.path, routes.pokemon.path,
-                        routes.pokemonCaughtList.path, routes.pokemonCaught.path]}
+                        routes.pokemonCaughtList.path]}
                            render={
                                (routeProps) => {
                                    const isCaught = routeProps.match.params.isCaught === 'caught';
-                                   const showDetails = [routes.pokemon.path, routes.pokemonCaught.path]
-                                       .includes(routeProps.match.path);
+                                   const showDetails = routes.pokemon.path === routeProps.match.path;
                                    return (
                                        <PokemonContextElement>
                                            {showDetails && <PokemonDetails id={routeProps.match.params.id}/>}
