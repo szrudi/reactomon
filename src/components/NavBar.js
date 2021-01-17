@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {generatePath, NavLink} from "react-router-dom";
 import {routes} from "../helpers/Globals";
 import styled from "styled-components";
 
@@ -27,9 +27,10 @@ const menuStyle = {marginBottom: 15, position: 'relative', verticalAlign: 'top'}
 const NavBar = props => {
     return (
         <div className="menu" style={menuStyle}>
-            <StyledNavLink to={routes.pokemonList.path}>{routes.pokemonList.title}</StyledNavLink>
-            <StyledNavLink to={routes.types.path}>{routes.types.title}</StyledNavLink>
-            <StyledNavLink to={routes.pokemonCaughtList.path}>{routes.pokemonCaughtList.title}</StyledNavLink>
+            <StyledNavLink exact to={generatePath(routes.pokemonList.path)}>{routes.pokemonList.title}</StyledNavLink>
+            <StyledNavLink to={generatePath(routes.types.path)}>{routes.types.title}</StyledNavLink>
+            <StyledNavLink to={generatePath(routes.pokemonCaughtList.path, {isCaught: 'caught'})}>
+                {routes.pokemonCaughtList.title}</StyledNavLink>
         </div>
     );
 };

@@ -1,11 +1,8 @@
-const pokemonListTitle = "Pokemon list";
-
 export const routes = {
-    root: {path: "/", title: pokemonListTitle},
-    pokemonList: {path: "/pokemon", title: pokemonListTitle},
-    pokemon: {path: "/pokemon/:id", title: "Pokemon Details"},
-    pokemonCaughtList: {path: "/pokemon-caught", title: "List of Caught Pokemon"},
-    pokemonCaught: {path: "/pokemon-caught/:id", title: "Caught Pokemon Details"},
+    pokemonList: {path: "/pokemon/", title: "Pokemon list"},
+    pokemon: {path: "/pokemon/:id(\\d+)", title: "Pokemon Details"},
+    pokemonCaughtList: {path: "/pokemon/:isCaught(caught)", title: "List of Caught Pokemon"},
+    pokemonCaught: {path: "/pokemon/:id(\\d+)/:isCaught(caught)", title: "Caught Pokemon Details"},
     types: {path: "/types", title: "Types of pokemon"},
 };
 

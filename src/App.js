@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, generatePath, Redirect, Route, Switch} from "react-router-dom";
 import PokemonList from "./components/PokemonList";
 import PokemonTypeList from "./components/PokemonTypeList";
 import MainLayout from "./layouts/MainLayout";
@@ -11,27 +11,28 @@ import PokemonContextElement from "./contexts/PokemonContextElement";
 function App() {
     return (
         <BrowserRouter>
+            <Route exact path="/">
+                <Redirect to={generatePath(routes.pokemonList.path)}/>
+            </Route>
             <MainLayout>
-                <PokemonContextElement>
-                    <Switch>
-                        <Route exact path={[
-                            routes.root.path,
-                            routes.pokemonList.path, routes.pokemon.path,
-                            routes.pokemonCaughtList.path, routes.pokemonCaught.path
-                        ]}>
-                            <Route path={[routes.pokemon.path, routes.pokemonCaught.path]}
-                                   render={(routeProps) => (
-                                       <PokemonDetails id={routeProps.match.params.id}/>)}/>
-                            <Route
-                                path={[routes.root.path, routes.pokemonList.path, routes.pokemonCaughtList.path]}
-                                render={(routeProps) => (
-                                    <PokemonList
-                                        caughtOnly={routeProps.match.path === routes.pokemonCaughtList.path}/>)}/>
-                        </Route>
-                        <Route path={routes.types.path}
-                               component={PokemonTypeList}/>
-                    </Switch>
-                </PokemonContextElement>
+                <Switch>
+                    <Route path={routes.types.path}
+                           component={PokemonTypeList}/>
+                    <Route exact path={[
+                        routes.pokemonList.path, routes.pokemon.path,
+                        routes.pokemonCaughtList.path, routes.pokemonCaught.path]}
+                           render={
+                               (routeProps) => {
+                                   const isCaught = routeProps.match.params.isCaught === 'caught';
+                                   const showDetails = [routes.pokemon.path, routes.pokemonCaught.path]
+                                       .includes(routeProps.match.path);
+                                   return (
+                                       <PokemonContextElement>
+                                           {showDetails && <PokemonDetails id={routeProps.match.params.id}/>}
+                                           <PokemonList caughtOnly={isCaught}/>
+                                       </PokemonContextElement>);
+                               }}/>
+                </Switch>
             </MainLayout>
         </BrowserRouter>
     );
