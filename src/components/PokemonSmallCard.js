@@ -5,8 +5,9 @@ import {routes} from "../helpers/Globals";
 import CatchPokemon from "./CatchPokemon";
 
 const PokemonSmallCard = ({pokemon}) => {
-    const {isCaught} = useParams();
-    const url = generatePath(routes.pokemon.path, {id: pokemon.id, isCaught});
+    const {isCaught, id} = useParams();
+    const path = parseInt(id) !== pokemon.id ? routes.pokemon.path : routes.pokemonList.path;
+    const url = generatePath(path, {id: pokemon.id, isCaught});
     return (
         <Card small centered>
             <Link to={url}>
