@@ -9,6 +9,10 @@ import PokemonDetails from "./components/PokemonDetails";
 import PokemonContextElement from "./contexts/PokemonContextElement";
 
 function App() {
+    // TODO: add theme switch (normal/night mode)
+    //   - https://reactjs.org/docs/context.html
+    //   - https://www.smashingmagazine.com/2020/01/introduction-react-context-api/
+
     return (
         <BrowserRouter>
             <Route exact path="/">

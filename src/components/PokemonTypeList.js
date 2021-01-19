@@ -3,7 +3,7 @@ import {useHttp} from "../hooks/useHttp";
 import {CardsContainer} from "../elements/CardsContainer";
 import {pokemonApi} from "../helpers/Globals";
 
-const PokemonTypeList = props => {
+const PokemonTypeList = () => {
     const [data, isLoading] = useHttp(pokemonApi + '/type');
     let placeHolder = <p>{isLoading ? "Loading list..." : "No type found."}</p>;
     return (
