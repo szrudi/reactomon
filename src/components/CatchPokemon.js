@@ -22,27 +22,18 @@ const PokeBall = styled.div`
 `;
 
 const CatchPokemon = ({pokemon}) => {
-    let [pokemonList, setPokemonList] = useContext(PokemonContext);
+    let [, setPokemonList] = useContext(PokemonContext);
 
-    const catchPokemon = e => {
-        e.preventDefault();
-        pokemonList = pokemonList.map(p => {
-            if (p.id === pokemon.id) {
-                // FIXME is this okay like this?
-                // https://reactjs.org/docs/hooks-reference.html#functional-updates
-                p.caught = !p.caught;
-            }
-            return p;
+    const catchPokemon = () => {
+        // console.log("Pokemon caught!", pokemon);
+        setPokemonList((list) => {
+            return list.map(p => {
+                return p.id !== pokemon.id ? p : {
+                    ...p,
+                    caught: !p.caught,
+                };
+            });
         });
-        setPokemonList(pokemonList);
-        // setPokemonList((previousList) =>
-        //     previousList.map(p => {
-        //         if (p.id === pokemon.id) {
-        //             p.caught = !p.caught;
-        //         }
-        //         return p;
-        //     })
-        // );
     };
 
     return (<PokeBall closed={pokemon.caught} onClick={catchPokemon}/>);
