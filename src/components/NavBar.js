@@ -24,15 +24,15 @@ const StyledNavLink = styled(NavLink)`
 
 const menuStyle = {marginBottom: 15, position: 'relative', verticalAlign: 'top'};
 
-const NavBar = props => {
-    return (
-        <div className="menu" style={menuStyle}>
-            <StyledNavLink exact to={generatePath(routes.pokemonList.path)}>{routes.pokemonList.title}</StyledNavLink>
-            <StyledNavLink to={generatePath(routes.types.path)}>{routes.types.title}</StyledNavLink>
-            <StyledNavLink to={generatePath(routes.pokemonCaughtList.path, {isCaught: 'caught'})}>
-                {routes.pokemonCaughtList.title}</StyledNavLink>
-        </div>
-    );
-};
+const NavBar = () => (
+    <div className="menu" style={menuStyle}>
+        <StyledNavLink exact to={generatePath(routes.pokemonList.path)}>
+            {routes.pokemonList.title()}</StyledNavLink>
+        <StyledNavLink to={generatePath(routes.types.path)}>
+            {routes.types.title()}</StyledNavLink>
+        <StyledNavLink to={generatePath(routes.pokemonList.path, {isCaught: 'caught'})}>
+            {routes.pokemonList.title('caught')}</StyledNavLink>
+    </div>
+);
 
 export default NavBar;

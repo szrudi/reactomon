@@ -19,9 +19,7 @@ function App() {
                     <Switch>
                         <Route path={routes.types.path}
                                component={PokemonTypeList}/>
-                        <Route exact path={[
-                            routes.pokemonList.path, routes.pokemon.path,
-                            routes.pokemonCaughtList.path]}
+                        <Route exact path={[routes.pokemonList.path, routes.pokemon.path]}
                                render={
                                    (routeProps) => {
                                        const isCaught = routeProps.match.params.isCaught === 'caught';

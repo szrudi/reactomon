@@ -10,7 +10,12 @@ const MainLayout = (props) => (
         <Title className={"title"}>
             <Switch>
                 {[...Object.values(routes)].map((route) =>
-                    <Route exact path={route.path} key={route.path}>{route.title}</Route>)}
+                    <Route exact path={route.path} key={route.path}
+                           render={
+                               (routeProps) => route.title(routeProps.match.params.isCaught)
+                           }
+                    />
+                )}
             </Switch>
         </Title>
         <NavBar/>
