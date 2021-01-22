@@ -26,14 +26,12 @@ const CatchPokemon = ({pokemon}) => {
 
     const catchPokemon = () => {
         // console.log("Pokemon caught!", pokemon);
-        setPokemonList((list) => {
-            return list.map(p => {
-                return p.id !== pokemon.id ? p : {
-                    ...p,
-                    caught: !p.caught,
-                };
-            });
-        });
+        // A reminder from figuring out what was not okay here:
+        // Do NOT mutate the object (list) you get here! :)
+        // https://dev.to/mccoyrjm/double-invoke-of-state-functions-in-react-5cl0
+        setPokemonList(list =>
+            list.map(p =>
+                p.id !== pokemon.id ? p : {...p, caught: !p.caught}));
     };
 
     return (<PokeBall closed={pokemon.caught} onClick={catchPokemon}/>);
